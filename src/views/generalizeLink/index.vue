@@ -19,7 +19,7 @@
         </div>
         <div class="generalizeLink_count QR_code">
           <div class="QR_codeDownload">
-            <img src="../../assets/images/QR_code.png" width="80vw" height="80vw">
+            <img src="../../assets/images/QR_code.png" width="100vw" height="100vw">
             <el-button type="primary" size="mini">
               <a href="../../assets/images/QR_code.png" download="二维码">下载保存</a>
             </el-button>
@@ -37,11 +37,11 @@
           <h5>您的专属推广海报：</h5>
         </div>
         <div class="generalizeLink_count poster">
-          <div class="">
-            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1540196843851&di=c82b7bb81919a0b8462506efb9b3682b&imgtype=0&src=http%3A%2F%2Fscimg.jb51.net%2Fallimg%2F140314%2F11-140314110FcI.jpg" width="80vw" height="80vw">
+          <div class="poster_create">
+            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1540196843851&di=c82b7bb81919a0b8462506efb9b3682b&imgtype=0&src=http%3A%2F%2Fscimg.jb51.net%2Fallimg%2F140314%2F11-140314110FcI.jpg" width="100vw" height="100vw">
             <el-button type="primary" size="mini">一键生成</el-button>
           </div>
-          <p>
+          <p style="text-align: justify;line-height:5vh;">
             此海报内容为【毕业论文免费查重】，已内嵌您的专属二维码，您可以直接一键生成推广海报，下载保存，将海报发到朋友圈、qq空间，微信群、qq群等。用户直接扫码，或者用户直接转发后扫码，系统已经识别用户ID，永久定位在您的名下，不管现在成交或者将来成交，都属于您的用户，都有分成。
           </p>
         </div>
@@ -49,12 +49,25 @@
       <li class="generalizeLink_item">
         <div class="generalizeLink_title">
           <span class="el-icon-info"/>
-          <h5>您的专属推广网址</h5>
+          <h5>线下素材下载 & 线下物料申请制作：</h5>
         </div>
         <div class="generalizeLink_count download_made">
-          <span>推广网址：<a href="###">www.baidu.com</a></span>
-          <span>使用推广渠道：QQ/QQ群/微信/朋友圈等</span>
-          <span>跟踪原理：<a href="###">点击了解</a></span>
+          <span>
+            自费印刷（不可以报销）：提供印刷素材
+            <el-button type="primary" size="mini">
+              <a href="../../assets/images/QR_code.png" download="印刷素材">素材下载</a>
+            </el-button>
+          </span>
+          <span>
+            在线申请（可以报销）：阅读【物料申请及报销政策】
+            <el-button type="primary" size="mini">
+              <a href="###">点击了解</a>
+            </el-button>
+            （若有疑问，请添加QQ:1240152678咨询，备注：物料申请），确定了解且没有疑问后，点右侧按钮
+            <el-button type="primary" size="mini">
+              在线申请物料
+            </el-button>
+          </span>
         </div>
       </li>
     </ul>
@@ -134,6 +147,19 @@
         line-height:8vh;
         span{
           display:block;
+        }
+      }
+    }
+    .poster{
+      flex-direction: row;
+      justify-content: flex-start;
+      .poster_create{
+        margin-right:5vw;
+        display:flex;
+        align-items:center;
+        justify-content:flex-start;
+        img{
+          margin-right:10px;
         }
       }
     }
