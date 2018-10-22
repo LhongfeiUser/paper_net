@@ -32,13 +32,12 @@ export const constantRouterMap = [
       component: () => import('@/views/dashboard/index')
     }]
   },
-
   {
-    path: '/example',
+    path: '/statistics',
     component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: '统计管理', icon: 'example' },
+    redirect: '/statistics/table',
+    name: 'statistics',
+    meta: { title: '统计管理', icon: 'table' },
     children: [
       {
         path: 'table',
@@ -50,7 +49,7 @@ export const constantRouterMap = [
         path: 'statement',
         name: 'Statement',
         component: () => import('@/views/statement/index'),
-        meta: { title: '收支明细', icon: 'user' }
+        meta: { title: '收支明细', icon: 'table' }
       },
       {
         path: 'order',
@@ -64,10 +63,10 @@ export const constantRouterMap = [
     path: '/vipManage',
     component: Layout,
     redirect: '/vipManage/index',
-    name: 'Nested',
+    name: 'vipManage',
     meta: {
       title: 'vip',
-      icon: 'nested'
+      icon: 'user'
     },
     children: [
       {
@@ -82,17 +81,17 @@ export const constantRouterMap = [
     path: '/articleManage',
     component: Layout,
     redirect: '/articleManage/index',
-    name: 'Nested',
+    name: 'articleManage',
     meta: {
-      title: 'articleManage',
+      title: 'article',
       icon: 'article'
     },
     children: [
       {
         path: 'index',
         component: ()=>import('@/views/articleManage/index'),
-        name: 'vip',
-        meta:{title:'文章管理', icon:'user'}
+        name: 'article',
+        meta:{title:'文章管理', icon:'article'}
       },
     ]
   },
@@ -102,15 +101,15 @@ export const constantRouterMap = [
     redirect: '/uploadFunction/index',
     name: 'uploadFunction',
     meta: {
-      title: 'vip',
-      icon: 'nested'
+      title: 'uploadFunction',
+      icon: 'upLoad'
     },
     children: [
       {
         path: 'index',
         component: ()=>import('@/views/uploadFunction/index'),
-        name: 'uploadFunction',
-        meta:{title:'上传功能', icon:'user'}
+        name: 'upload',
+        meta:{title:'上传功能', icon:'upLoad'}
       },
     ]
   },
@@ -118,17 +117,17 @@ export const constantRouterMap = [
     path: '/userList',
     component: Layout,
     redirect: '/userList/index',
-    name: 'Nested',
+    name: 'userList',
     meta: {
       title: 'userList',
-      icon: 'nested'
+      icon: 'userList'
     },
     children: [
       {
         path: 'index',
         component: ()=>import('@/views/userList/index'),
-        name: 'userList',
-        meta:{title:'用户列表', icon:'user'}
+        name: 'user',
+        meta:{title:'用户列表', icon:'userList'}
       },
     ]
   },
@@ -136,17 +135,17 @@ export const constantRouterMap = [
     path: '/generalizeLink',
     component: Layout,
     redirect: '/generalizeLink/index',
-    name: 'Nested',
+    name: 'generalizeLink',
     meta: {
       title: 'generalizeLink',
-      icon: 'nested'
+      icon: 'generalizeLink'
     },
     children: [
       {
         path: 'index',
         component: ()=>import('@/views/generalizeLink/index'),
-        name: 'generalizeLink',
-        meta:{title:'推广链接', icon:'user'}
+        name: 'generalize',
+        meta:{title:'推广链接', icon:'generalizeLink'}
       },
     ]
   },
@@ -154,17 +153,17 @@ export const constantRouterMap = [
     path: '/proxyManage',
     component: Layout,
     redirect: '/proxyManage/index',
-    name: 'Nested',
+    name: 'proxyManage',
     meta: {
       title: 'proxyManage',
-      icon: 'nested'
+      icon: 'proxyManage'
     },
     children: [
       {
         path: 'index',
         component: ()=>import('@/views/proxyManage/index'),
-        name: 'proxyManage',
-        meta:{title:'代理管理', icon:'user'}
+        name: 'proxy',
+        meta:{title:'代理管理', icon:'proxyManage'}
       },
     ]
   },
@@ -172,63 +171,59 @@ export const constantRouterMap = [
     path: '/prorataManage',
     component: Layout,
     redirect: '/prorataManage/index',
-    name: 'Nested',
+    name: 'prorataManage',
     meta: {
       title: 'prorataManage',
-      icon: 'nested'
+      icon: 'prorataManage'
     },
     children: [
       {
         path: 'index',
         component: ()=>import('@/views/prorataManage/index'),
-        name: 'prorataManage',
-        meta:{title:'分成管理', icon:'user'}
+        name: 'prorata',
+        meta:{title:'分成管理', icon:'prorataManage'}
       },
     ]
   },
-
   {
     path: '/applyForWithdraw',
     component: Layout,
     redirect: '/applyForWithdraw/index',
-    name: 'Nested',
+    name: 'applyForWithdraw',
     meta: {
       title: 'applyForWithdraw',
-      icon: 'nested'
+      icon: 'applyForWithdraw'
     },
     children: [
       {
         path: 'index',
         component: ()=>import('@/views/applyForWithdraw/index'),
-        name: 'applyForWithdraw',
-        meta:{title:'申请提现', icon:'user'}
+        name: 'withdraw',
+        meta:{title:'申请提现', icon:'applyForWithdraw'}
       },
     ]
   },
-
   {
     path: '/operationCourse',
     component: Layout,
     redirect: '/operationCourse/index',
-    name: 'Nested',
+    name: 'operationCourse',
     meta: {
       title: 'operationCourse',
-      icon: 'nested'
+      icon: 'operationCourse'
     },
     children: [
       {
         path: 'index',
         component: ()=>import('@/views/operationCourse/index'),
-        name: 'operationCourse',
-        meta:{title:'操作教程', icon:'user'}
+        name: 'operation',
+        meta:{title:'操作教程', icon:'operationCourse'}
       },
     ]
   },
 
-
-
-  { path: '*', redirect: '/404', hidden: true }
-]
+  { path: '*', redirect: '/404', hidden: true },
+];
 
 export default new Router({
   // mode: 'history', //后端支持可开

@@ -7,23 +7,23 @@
         <el-table-column
           prop="date"
           label="时间"
-          width="100"/>
+          width=""/>
         <el-table-column
           prop="name"
           label="类型"
-          width="280"/>
+          width=""/>
         <el-table-column
           prop="province"
           label="收入（支出）"
-          width="200"/>
+          width=""/>
         <el-table-column
           prop="city"
           label="余额"
-          width="200"/>
+          width=""/>
         <el-table-column
           prop="zip"
           label="备注"
-          width="200"/>
+          width=""/>
       </el-table-column>
     </el-table>
     <el-pagination

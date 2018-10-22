@@ -1,7 +1,10 @@
 <template>
   <div class="app-container">
     <div class="orderDetail">
-      <h5>所有订单详情</h5>
+      <div class="orderDetail_title">
+        <span class="el-icon-document"/>
+        <h5>所有订单详情</h5>
+      </div>
       <div style="display:flex;justify-content: end;">
         <el-select v-model="value">
           <el-option
@@ -28,23 +31,23 @@
         <el-table-column
           prop="date"
           label="日期"
-          width="200"/>
+          width=""/>
         <el-table-column
           prop="name"
           label="订单数"
-          width="200"/>
+          width=""/>
         <el-table-column
           prop="province"
           label="论文篇数"
-          width="200"/>
+          width=""/>
         <el-table-column
           prop="city"
           label="销售额"
-          width="200"/>
+          width=""/>
         <el-table-column
           prop="zip"
           label="收入"
-          width="200"/>
+          width=""/>
       </el-table-column>
 
     </el-table>
@@ -127,7 +130,11 @@
     }
 </script>
 
-<style>
+<style lang="scss">
+  .el-select{
+    margin-right:5px;
+  }
+  /*分页器*/
   .el-pagination {
     text-align: end;
     margin-top: 5vh;
@@ -140,5 +147,14 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 80px 10px 0;
+    border:1px solid #ebeef5;
+    background-color:#f8f5f0;
+    margin-bottom:10px;
+    .orderDetail_title{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left:10px;
+    }
   }
 </style>

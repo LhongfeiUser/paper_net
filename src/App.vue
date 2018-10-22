@@ -9,3 +9,8 @@ export default {
   name: 'App'
 }
 </script>
+<style lang="scss">
+  ul,li{
+    list-style:none;
+  }
+</style>

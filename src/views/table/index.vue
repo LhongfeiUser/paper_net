@@ -24,32 +24,31 @@
         </li>
       </ul>
     </div>
+    <div class="every_statistics">每日统计</div>
     <el-table
       :data="tableData3"
+      border
       style="width:100%">
-      <el-table-column label="每日统计">
-        <el-table-column
-          prop="date"
-          label="日期"
-          width="200"/>
-        <el-table-column
-          prop="name"
-          label="订单数"
-          width="250"/>
-        <el-table-column
-          prop="province"
-          label="论文篇数"
-          width="250"/>
-        <el-table-column
-          prop="city"
-          label="销售额"
-          width="250"/>
-        <el-table-column
-          prop="zip"
-          label="收入"
-          width="250"/>
-      </el-table-column>
-
+      <el-table-column
+        prop="date"
+        label="日期"
+        width=""/>
+      <el-table-column
+        prop="name"
+        label="订单数"
+        width=""/>
+      <el-table-column
+        prop="province"
+        label="论文篇数"
+        width=""/>
+      <el-table-column
+        prop="city"
+        label="销售额"
+        width=""/>
+      <el-table-column
+        prop="zip"
+        label="收入"
+        width=""/>
     </el-table>
     <el-pagination
       :total="num"
@@ -137,9 +136,6 @@ export default {
 }
 </script>
 <style>
-  ul,li{
-    list-style:none;
-  }
   .el-pagination {
     text-align: end;
     margin-top: 5vh;
@@ -171,5 +167,22 @@ export default {
   }
   .statistics_item li:nth-last-child(1){
     border-right:none;
+  }
+
+  /*每日统计*/
+  .every_statistics{
+    background-color:#f5f7fa; /*#f9f6f1 */
+    height:50px;
+    line-height:50px;
+    padding-left:10px;
+    color:#909399;
+  }
+  /*表格头部background*/
+
+  .el-table th, .el-table tr{
+    background: #f5f7fa;
+  }
+  .el-table__header-wrapper .el-table th, .el-table tr {
+    background-color:#fff;
   }
 </style>
