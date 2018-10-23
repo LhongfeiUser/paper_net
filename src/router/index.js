@@ -60,38 +60,35 @@ export const constantRouterMap = [
     ]
   },
   {
-    path: '/vipManage',
+    path:'/userManage',
     component: Layout,
-    redirect: '/vipManage/index',
-    name: 'vipManage',
-    meta: {
-      title: 'vip',
-      icon: 'user'
-    },
-    children: [
+    redirect: '/userManage/user',
+    name:'userManage',
+    meta: {title:'用户管理', icon:'user'},
+    children:[
       {
-        path: 'index',
+        path: 'vip',
         component: ()=>import('@/views/vip/index'),
         name: 'vip',
         meta:{title:'会员管理', icon:'user'}
       },
-    ]
-  },
-  {
-    path: '/articleManage',
-    component: Layout,
-    redirect: '/articleManage/index',
-    name: 'articleManage',
-    meta: {
-      title: 'article',
-      icon: 'article'
-    },
-    children: [
       {
-        path: 'index',
+        path: 'article',
         component: ()=>import('@/views/articleManage/index'),
         name: 'article',
         meta:{title:'文章管理', icon:'article'}
+      },
+      {
+        path: 'userList',
+        component: ()=>import('@/views/userList/index'),
+        name: 'user',
+        meta:{title:'用户列表', icon:'userList'}
+      },
+      {
+        path: 'proxy',
+        component: ()=>import('@/views/proxyManage/index'),
+        name: 'proxy',
+        meta:{title:'代理管理', icon:'proxyManage'}
       },
     ]
   },
@@ -114,24 +111,6 @@ export const constantRouterMap = [
     ]
   },
   {
-    path: '/userList',
-    component: Layout,
-    redirect: '/userList/index',
-    name: 'userList',
-    meta: {
-      title: 'userList',
-      icon: 'userList'
-    },
-    children: [
-      {
-        path: 'index',
-        component: ()=>import('@/views/userList/index'),
-        name: 'user',
-        meta:{title:'用户列表', icon:'userList'}
-      },
-    ]
-  },
-  {
     path: '/generalizeLink',
     component: Layout,
     redirect: '/generalizeLink/index',
@@ -150,48 +129,12 @@ export const constantRouterMap = [
     ]
   },
   {
-    path: '/proxyManage',
-    component: Layout,
-    redirect: '/proxyManage/index',
-    name: 'proxyManage',
-    meta: {
-      title: 'proxyManage',
-      icon: 'proxyManage'
-    },
-    children: [
-      {
-        path: 'index',
-        component: ()=>import('@/views/proxyManage/index'),
-        name: 'proxy',
-        meta:{title:'代理管理', icon:'proxyManage'}
-      },
-    ]
-  },
-  {
-    path: '/prorataManage',
-    component: Layout,
-    redirect: '/prorataManage/index',
-    name: 'prorataManage',
-    meta: {
-      title: 'prorataManage',
-      icon: 'prorataManage'
-    },
-    children: [
-      {
-        path: 'index',
-        component: ()=>import('@/views/prorataManage/index'),
-        name: 'prorata',
-        meta:{title:'分成管理', icon:'prorataManage'}
-      },
-    ]
-  },
-  {
     path: '/applyForWithdraw',
     component: Layout,
     redirect: '/applyForWithdraw/index',
     name: 'applyForWithdraw',
     meta: {
-      title: 'applyForWithdraw',
+      title: '申请提现',
       icon: 'applyForWithdraw'
     },
     children: [
@@ -226,7 +169,7 @@ export const constantRouterMap = [
 ];
 
 export default new Router({
-  // mode: 'history', //后端支持可开
+  mode: 'history', //后端支持可开
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRouterMap
 })

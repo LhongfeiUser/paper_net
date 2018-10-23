@@ -21,7 +21,7 @@
           <div class="QR_codeDownload">
             <img src="../../assets/images/QR_code.png" width="100vw" height="100vw">
             <el-button type="primary" size="mini">
-              <a href="../../assets/images/QR_code.png" download="二维码">下载保存</a>
+              <a href="blob:http://localhost:9528/37131432-c10f-4633-a455-e9e6acf4a677" download="二维码">下载保存</a>
             </el-button>
           </div>
           <div class="QR_code_content">
