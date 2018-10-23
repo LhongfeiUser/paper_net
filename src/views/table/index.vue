@@ -26,7 +26,7 @@
     </div>
     <div class="every_statistics">每日统计</div>
     <el-table
-      :data="tableData3"
+      :data="list"
       border
       style="width:100%">
       <el-table-column
@@ -38,7 +38,7 @@
         label="订单数"
         width=""/>
       <el-table-column
-        prop="province"
+        prop="id"
         label="论文篇数"
         width=""/>
       <el-table-column
@@ -51,7 +51,8 @@
         width=""/>
     </el-table>
     <el-pagination
-      :total="num"
+      :total="100"
+      :page-size="10"
       background
       layout="prev, pager, next"/>
   </div>
@@ -59,7 +60,6 @@
 
 <script>
 import { getList } from '@/api/table'
-
 export default {
   filters: {
     statusFilter(status) {
@@ -76,49 +76,6 @@ export default {
       list: null,
       listLoading: true,
       num: 100,
-      tableData3: [{
-        date: '2016-05-03',
-        name: '1',
-        province: '2',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333
-      }, {
-        date: '2016-05-02',
-        name: '1',
-        province: '2',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333
-      }, {
-        date: '2016-05-01',
-        name: '1',
-        province: '2',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333
-      }, {
-        date: '2016-05-08',
-        name: '1',
-        province: '2',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333
-      }, {
-        date: '2016-05-06',
-        name: '1',
-        province: '2',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333
-      }]
     }
   },
   created() {
@@ -127,11 +84,11 @@ export default {
   methods: {
     fetchData() {
       this.listLoading = true
-      getList(this.listQuery).then(response => {
-        this.list = response.data.items
+      getList(this.listQuery).then((res)=>{
+        this.list = res.items;
         this.listLoading = false
       })
-    }
+    },
   }
 }
 </script>
