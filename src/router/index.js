@@ -33,65 +33,44 @@ export const constantRouterMap = [
     }]
   },
   {
-    path: '/statistics',
-    component: Layout,
-    redirect: '/statistics/table',
-    name: 'statistics',
-    meta: { title: '统计管理', icon: 'table' },
-    children: [
-      {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: '数据统计', icon: 'table' }
-      },
-      {
-        path: 'statement',
-        name: 'Statement',
-        component: () => import('@/views/statement/index'),
-        meta: { title: '收支明细', icon: 'table' }
-      },
-      {
-        path: 'order',
-        name: 'OrderDetails',
-        component: () => import('@/views/orderDetails/index'),
-        meta: { title: '订单详情', icon: 'eye' }
-      }
-    ]
-  },
-  /*{
     path:'/userManage',
     component: Layout,
-    redirect: '/userManage/user',
+    redirect: '/userManage/userList',
     name:'userManage',
-    meta: {title:'用户管理', icon:'user'},
+    meta: {title:'代理列表', icon:'user',role: ['admin','super_editor']},
     children:[
-      {
-        path: 'vip',
-        component: ()=>import('@/views/vip/index'),
-        name: 'vip',
-        meta:{title:'会员管理', icon:'user'}
-      },
       {
         path: 'article',
         component: ()=>import('@/views/articleManage/index'),
         name: 'article',
-        meta:{title:'文章管理', icon:'article'}
+        meta:{title:'文章管理', icon:'article',role: ['admin','super_editor']}
       },
       {
         path: 'userList',
         component: ()=>import('@/views/userList/index'),
-        name: 'user',
-        meta:{title:'用户列表', icon:'userList'}
+        name: 'userList',
+        meta:{title:'用户列表', icon:'userList',role: ['admin','super_editor']}
       },
       {
-        path: 'proxy',
-        component: ()=>import('@/views/proxyManage/index'),
-        name: 'proxy',
-        meta:{title:'代理管理', icon:'proxyManage'}
+        path: 'apply',
+        component: ()=>import('@/views/applyForWithdraw/index'),
+        name: 'withdraw',
+        meta:{title:'申请提现', icon:'applyForWithdraw'}
+      },
+      {
+        path: 'myStatement',
+        component: ()=>import('@/views/myStatement/index'),
+        name: 'myStatement',
+        meta:{title:'收支明细', icon:'applyForWithdraw'}
+      },
+      {
+        path: 'myOrder',
+        component: ()=>import('@/views/myOrderDetail/index'),
+        name: 'myOrder',
+        meta:{title:'订单详情', icon:'applyForWithdraw'}
       },
     ]
-  },*/
+  },
   {
     path: '/uploadFunction',
     component: Layout,
@@ -129,20 +108,20 @@ export const constantRouterMap = [
     ]
   },
   {
-    path: '/applyForWithdraw',
+    path: '/prorataManage',
     component: Layout,
-    redirect: '/applyForWithdraw/index',
-    name: 'applyForWithdraw',
+    redirect: '/prorataManage/index',
+    name: 'prorataManage',
     meta: {
-      title: '申请提现',
-      icon: 'applyForWithdraw'
+      title: 'prorataManage',
+      icon: 'prorataManage'
     },
     children: [
       {
         path: 'index',
-        component: ()=>import('@/views/applyForWithdraw/index'),
-        name: 'withdraw',
-        meta:{title:'申请提现', icon:'applyForWithdraw'}
+        component: ()=>import('@/views/prorataManage/index'),
+        name: 'prorataManage',
+        meta:{title:'分成设置', icon:'prorataManage'}
       },
     ]
   },
@@ -174,35 +153,47 @@ export default new Router({
 })
 export const asyncRouterMap = [
   {
-    path:'/userManage',
+    path: '/statistics',
     component: Layout,
-    redirect: '/userManage/userList',
-    name:'userManage',
-    meta: {title:'用户管理', icon:'user',role: ['admin','super_editor']},
-    children:[
+    redirect: '/statistics/table',
+    name: 'statistics',
+    meta: { title: '管理列表', icon: 'table' },
+    children: [
       {
-        path: 'vip',
-        component: ()=>import('@/views/vip/index'),
-        name: 'vip',
-        meta:{title:'会员管理', icon:'user',role: ['admin','super_editor']}
+        path: 'table',
+        name: 'Table',
+        component: () => import('@/views/table/index'),
+        meta: { title: '数据统计', icon: 'table' }
       },
       {
-        path: 'article',
-        component: ()=>import('@/views/articleManage/index'),
-        name: 'article',
-        meta:{title:'文章管理', icon:'article',role: ['admin','super_editor']}
+        path: 'statement',
+        name: 'Statement',
+        component: () => import('@/views/statement/index'),
+        meta: { title: '收支明细', icon: 'table' }
       },
       {
-        path: 'userList',
-        component: ()=>import('@/views/userList/index'),
-        name: 'userList',
-        meta:{title:'用户列表', icon:'userList',role: ['admin','super_editor']}
+        path: 'order',
+        name: 'OrderDetails',
+        component: () => import('@/views/orderDetails/index'),
+        meta: { title: '订单详情', icon: 'eye' }
       },
+      {
+        path:'/withdrawManage',
+        name:'withdrawManage',
+        component: () => import('@/views/withdrawManage/index'),
+        meta: { title:'提现管理', icon:'eye'}
+      },
+      /*   {
+           path: 'myStatement',
+           component: ()=>import('@/views/myStatement/index'),
+           name: 'myStatement',
+           meta:{title:'会员管理', icon:'user',role: ['admin','super_editor']}
+         },*/
       {
         path: 'proxy',
         component: ()=>import('@/views/proxyManage/index'),
         name: 'proxy',
-        meta:{title:'代理管理', icon:'proxyManage',role: ['admin','super_editor']}
+        meta:{title:'会员管理', icon:'proxyManage',role: ['admin','super_editor']}
       },
     ]
   },

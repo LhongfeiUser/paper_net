@@ -1,10 +1,11 @@
 <template>
-  <div>vip</div>
+  <div>
+    提现管理
+  </div>
 </template>
 
 <script>
     export default {
-        name: "Vip"
     }
 </script>
 

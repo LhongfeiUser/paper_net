@@ -22,10 +22,12 @@ export default {
   components: { SidebarItem },
   computed: {
     ...mapGetters([
-      'sidebar','addRouters'
+      'sidebar',
+      'addRouters'
     ]),
     routes() {
-      return this.$router.options.routes.concat(this.addRouters)
+      // return this.$router.options.routes.concat(this.addRouters)
+      return this.addRouters.concat(this.$router.options.routes)
     },
     isCollapse() {
       return !this.sidebar.opened

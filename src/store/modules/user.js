@@ -41,7 +41,6 @@ const user = {
           commit('SET_TOKEN', data.token)
           resolve()
         }).catch(error => {
-          console.log('aa');
           reject(error)
         })
       })
@@ -90,7 +89,7 @@ const user = {
     },
     GenerateRoutes({ commit }, { roles }) {
       return new Promise(resolve => {
-        if(roles.indexOf('admin')!== -1){
+        if(roles.indexOf('admin') !== -1){
           commit('SET_ROUTERS', asyncRouterMap);
         }
         resolve();
