@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .li_ys li {
+      display: inline-block;
+      float: left;
+      text-align: center;
+      line-height: 30px;
+      font-size: 1em;
+      font-weight: bold;
+      color: blue;
+      width: 100px;
+      height: 100px;
+      overflow: hidden;
+      border: 1px solid red;
+      margin-left: 5px;
+      margin-top: 20px;
+      margin-right: 50px;
+    }
+
+    .selected {
+      background: cyan;
+    }
+
+    .hover {
+      background: #ccc;
+    }
+
+    .tab_box div {
+      border: 1px solid red;
+      height: 150px;
+      width: 500px;
+    }
+
+    .hide {
+      display: none;
+    }
+
+    .tab {
+      display: flex;
+    }
+
+    .li_ys {
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+</head>
+<body>
+<fieldset>
+  <legend>网页选项卡</legend>
+  <div class="tab">
+    <div class="tab_menu">
+      <ul class="li_ys">
+        <li class="selected"><img src="http://img3.imgtn.bdimg.com/it/u=3955961925,1635634204&fm=26&gp=0.jpg" alt="诗">
+        </li>
+        <li><img src="http://img5.imgtn.bdimg.com/it/u=3555318255,3053758362&fm=26&gp=0.jpg" alt="词"></li>
+        <li><img src="http://img1.imgtn.bdimg.com/it/u=1315077950,1203247259&fm=26&gp=0.jpg" alt="歌"></li>
+        <li><img src="http://img5.imgtn.bdimg.com/it/u=1201535797,3677565704&fm=26&gp=0.jpg" alt="赋"></li>
+      </ul>
+    </div>
+    <div class="tab_box" style="clear:both;">
+      <div><img src="http://img3.imgtn.bdimg.com/it/u=3955961925,1635634204&fm=26&gp=0.jpg" alt="诗"></div>
+      <div class="hide"><img src="http://img5.imgtn.bdimg.com/it/u=3555318255,3053758362&fm=26&gp=0.jpg" alt="词"></div>
+      <div class="hide"><img src="http://img1.imgtn.bdimg.com/it/u=1315077950,1203247259&fm=26&gp=0.jpg" alt="歌"></div>
+      <div class="hide"><img src="http://img5.imgtn.bdimg.com/it/u=1201535797,3677565704&fm=26&gp=0.jpg" alt="赋"></div>
+    </div>
+  </div>
+</fieldset>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+  $('div.tab li').click(function () {
+    $(this).addClass('selected').siblings().removeClass('selected');
+    var xuhao = $(this).index();
+    $('div.tab_box div').eq(xuhao).show().siblings().hide();
+  }).hover(function () {
+    $(this).addClass('hover');
+  }, function () {
+    $(this).removeClass('hover');
+  })
+</script>
+</body>
+</html>

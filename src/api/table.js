@@ -2,7 +2,21 @@ import request from '@/utils/request'
 
 export function getList(params) {
   return request({
-    url: '/list',
+    url: '/table/list',
+    method: 'get',
+    params
+  })
+}
+export function getInCome(params) {
+  return request({
+    url: '/statement',
+    method: 'get',
+    params
+  })
+}
+export function getOrderList(params) {
+  return request({
+    url: '/orderDetail',
     method: 'get',
     params
   })

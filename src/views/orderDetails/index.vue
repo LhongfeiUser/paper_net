@@ -25,111 +25,100 @@
       </div>
     </div>
     <el-table
-      :data="tableData3"
+      :data="orderList"
       style="width:100%">
-      <el-table-column label="每日统计">
+      <el-table-column label="订单详情">
         <el-table-column
-          prop="date"
-          label="日期"
+          prop="order_num"
+          label="订单号"
           width=""/>
         <el-table-column
           prop="name"
-          label="订单数"
+          label="成交金额"
           width=""/>
         <el-table-column
           prop="province"
-          label="论文篇数"
+          label="检测系统"
           width=""/>
         <el-table-column
           prop="city"
-          label="销售额"
+          label="成功/失败总篇数"
           width=""/>
         <el-table-column
           prop="zip"
-          label="收入"
+          label="交易状态"
+          width=""/>
+        <el-table-column
+          prop="zip"
+          label="订单状态"
+          width=""/>
+        <el-table-column
+          prop="zip"
+          label="所属"
+          width=""/>
+        <el-table-column
+          prop="date"
+          label="创建时间"
           width=""/>
       </el-table-column>
-
     </el-table>
     <el-pagination
       :total="num"
       background
-      layout="prev, pager, next"/>
+      layout="prev, pager, next"
+      @current-change="changePage"
+    />
   </div>
 </template>
 
 <script>
+  import {getOrderList} from '@/api/table'
     export default {
       name: "OrderDetails",
       data(){
         return{
-          options: [{
+          options: [
+            {
             value: '选项1',
-            label: '检测系统'
+            label: '检测系统1'
           }, {
             value: '选项2',
-            label: '检测系统'
+            label: '检测系统2'
           }, {
             value: '选项3',
-            label: '检测系统'
+            label: '检测系统3'
           }, {
             value: '选项4',
-            label: '检测系统'
+            label: '检测系统4'
           }, {
             value: '选项5',
-            label: '检测系统'
+            label: '检测系统5'
           }],
           value6: '',
-          value: '所有检测系统',
-          num: 100,
-          tableData3: [{
-            date: '2016-05-03',
-            name: '1',
-            province: '2',
-            city: '普陀区',
-            address: '上海市普陀区金沙江路 1518 弄',
-            zip: 200333
-          }, {
-            date: '2016-05-02',
-            name: '1',
-            province: '2',
-            city: '普陀区',
-            address: '上海市普陀区金沙江路 1518 弄',
-            zip: 200333
-          }, {
-            date: '2016-05-04',
-            name: '王小虎',
-            province: '上海',
-            city: '普陀区',
-            address: '上海市普陀区金沙江路 1518 弄',
-            zip: 200333
-          }, {
-            date: '2016-05-01',
-            name: '1',
-            province: '2',
-            city: '普陀区',
-            address: '上海市普陀区金沙江路 1518 弄',
-            zip: 200333
-          }, {
-            date: '2016-05-08',
-            name: '1',
-            province: '2',
-            city: '普陀区',
-            address: '上海市普陀区金沙江路 1518 弄',
-            zip: 200333
-          }, {
-            date: '2016-05-06',
-            name: '1',
-            province: '2',
-            city: '普陀区',
-            address: '上海市普陀区金沙江路 1518 弄',
-            zip: 200333
-          }]
+          date: '2016-05-06',value: '所有检测系统',
+          num: null,
+          orderList:null,
+          orderLists:null,
+        }
+      },
+      created(){
+        this.getData();
+      },
+      methods:{
+        getData(){
+          getOrderList().then(res=>{
+            console.log(res);
+            this.orderLists=res.items;
+            this.changePage(1);
+            this.num = res.items.length;
+          })
+        },
+        changePage(page){
+          this.orderList = this.orderLists.slice((page-1)*10,page*10)
         }
       }
     }
 </script>
-
 <style lang="scss">
   .el-select{
     margin-right:5px;
@@ -155,6 +144,10 @@
       justify-content: center;
       align-items: center;
       margin-left:10px;
+      color:#606266;
+      span{
+        font-size:20px;
+      }
     }
   }
 </style>

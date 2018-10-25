@@ -1,12 +1,15 @@
 import { login, logout, getInfo } from '@/api/login'
 import { getToken, setToken, removeToken } from '@/utils/auth'
+import { asyncRouterMap } from  '@/router/index'
+
 
 const user = {
   state: {
     token: getToken(),
     name: '',
     avatar: '',
-    roles: []
+    roles: [],
+    addRouters: []
   },
 
   mutations: {
@@ -21,6 +24,9 @@ const user = {
     },
     SET_ROLES: (state, roles) => {
       state.roles = roles
+    },
+    SET_ROUTERS: (state, routers) => {
+      state.addRouters = routers
     }
   },
 
@@ -35,6 +41,7 @@ const user = {
           commit('SET_TOKEN', data.token)
           resolve()
         }).catch(error => {
+          console.log('aa');
           reject(error)
         })
       })
@@ -79,6 +86,14 @@ const user = {
         commit('SET_TOKEN', '')
         removeToken()
         resolve()
+      })
+    },
+    GenerateRoutes({ commit }, { roles }) {
+      return new Promise(resolve => {
+        if(roles.indexOf('admin')!== -1){
+          commit('SET_ROUTERS', asyncRouterMap);
+        }
+        resolve();
       })
     }
   }

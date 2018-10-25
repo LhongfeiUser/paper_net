@@ -5,28 +5,28 @@
         <span class="el-icon-tickets"/>
         今日实时统计
       </div>
-      <ul class="statistics_item">
+      <ul v-for="(item,index) in today" :key="index" class="statistics_item">
         <li>
           <h4>订单数</h4>
-          <h5>1</h5>
+          <h5>{{ item.order }}</h5>
         </li>
         <li>
           <h4>论文篇数</h4>
-          <h5>12</h5>
+          <h5>{{ item.article_num }}</h5>
         </li>
         <li>
           <h4>销售额</h4>
-          <h5>￥0</h5>
+          <h5>￥{{ item.sale }}</h5>
         </li>
         <li>
           <h4>收入</h4>
-          <h5>￥0</h5>
+          <h5>￥{{ item.inCome }}</h5>
         </li>
       </ul>
     </div>
     <div class="every_statistics">每日统计</div>
     <el-table
-      :data="list"
+      :data="listItem"
       border
       style="width:100%">
       <el-table-column
@@ -34,34 +34,36 @@
         label="日期"
         width=""/>
       <el-table-column
-        prop="name"
+        prop="order"
         label="订单数"
         width=""/>
       <el-table-column
-        prop="id"
+        prop="article_num"
         label="论文篇数"
         width=""/>
       <el-table-column
-        prop="city"
+        prop="sale"
         label="销售额"
         width=""/>
       <el-table-column
-        prop="zip"
+        prop="inCome"
         label="收入"
         width=""/>
     </el-table>
     <el-pagination
-      :total="100"
+      :total="num"
       :page-size="10"
       background
-      layout="prev, pager, next"/>
+      layout="prev, pager, next"
+      @current-change="changePage"
+    />
   </div>
 </template>
 
 <script>
 import { getList } from '@/api/table'
 export default {
-  filters: {
+  /*filters: {
     statusFilter(status) {
       const statusMap = {
         published: 'success',
@@ -70,25 +72,33 @@ export default {
       }
       return statusMap[status]
     }
-  },
+  },*/
   data() {
     return {
-      list: null,
+      listItem: null,
+      listNum:null,
+      today:[],
       listLoading: true,
-      num: 100,
+      num: 0,
     }
   },
   created() {
-    // this.fetchData()
+    this.fetchData()
   },
   methods: {
     fetchData() {
       this.listLoading = true
-      getList(this.listQuery).then((res)=>{
-        this.list = res.items;
+      getList().then((res)=>{
+        this.listNum=res.items;
+        this.today=res.today;
+        this.num = res.items.length;
+        this.changePage(1);
         this.listLoading = false
       })
     },
+    changePage(page){
+      this.listItem = this.listNum.slice((page-1)*10,page*10)
+    }
   }
 }
 </script>

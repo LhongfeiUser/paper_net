@@ -59,7 +59,7 @@ export const constantRouterMap = [
       }
     ]
   },
-  {
+  /*{
     path:'/userManage',
     component: Layout,
     redirect: '/userManage/user',
@@ -91,7 +91,7 @@ export const constantRouterMap = [
         meta:{title:'代理管理', icon:'proxyManage'}
       },
     ]
-  },
+  },*/
   {
     path: '/uploadFunction',
     component: Layout,
@@ -164,12 +164,47 @@ export const constantRouterMap = [
       },
     ]
   },
-
   { path: '*', redirect: '/404', hidden: true },
 ];
 
 export default new Router({
-  mode: 'history', //后端支持可开
+  // mode: 'history', //后端支持可开
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRouterMap
 })
+export const asyncRouterMap = [
+  {
+    path:'/userManage',
+    component: Layout,
+    redirect: '/userManage/userList',
+    name:'userManage',
+    meta: {title:'用户管理', icon:'user',role: ['admin','super_editor']},
+    children:[
+      {
+        path: 'vip',
+        component: ()=>import('@/views/vip/index'),
+        name: 'vip',
+        meta:{title:'会员管理', icon:'user',role: ['admin','super_editor']}
+      },
+      {
+        path: 'article',
+        component: ()=>import('@/views/articleManage/index'),
+        name: 'article',
+        meta:{title:'文章管理', icon:'article',role: ['admin','super_editor']}
+      },
+      {
+        path: 'userList',
+        component: ()=>import('@/views/userList/index'),
+        name: 'userList',
+        meta:{title:'用户列表', icon:'userList',role: ['admin','super_editor']}
+      },
+      {
+        path: 'proxy',
+        component: ()=>import('@/views/proxyManage/index'),
+        name: 'proxy',
+        meta:{title:'代理管理', icon:'proxyManage',role: ['admin','super_editor']}
+      },
+    ]
+  },
+  // { path: '*', redirect: '/404', hidden: true }
+];
