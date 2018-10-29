@@ -37,7 +37,7 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/userManage/userList',
     name:'userManage',
-    meta: {title:'代理商列表', icon:'user',role: ['admin','super_editor']},
+    meta: {title:'代理商列表', icon:'user'},
     children:[
       {
         path: 'table',
@@ -55,7 +55,7 @@ export const constantRouterMap = [
         path: 'userList',
         component: ()=>import('@/views/userList/index'),
         name: 'userList',
-        meta:{title:'用户列表', icon:'userList',role: ['admin','super_editor']}
+        meta:{title:'用户列表', icon:'userList'}
       },
       {
         path: 'myStatement',
@@ -190,25 +190,25 @@ export const asyncRouterMap = [
             path:'proxyDataStatistics',
             name:'proxyDataStatistics',
             component: () => import('@/views/proxyDataStatistics/index'),
-            meta: { title:'数据统计', icon:'eye'}
+            meta: { title:'数据统计', icon:'eye',role: ['admin','super_editor']}
           },
           {
             path:'proxyStatement',
             name:'proxyStatement',
             component: () => import('@/views/proxyStatement/index'),
-            meta: { title:'收支明细', icon:'eye'}
+            meta: { title:'收支明细', icon:'eye',role: ['admin','super_editor']}
           },
           {
             path: 'sharedSetting',
             component: ()=>import('@/views/sharedSetting/index'),
             name: 'sharedSetting',
-            meta:{title:'分成设置', icon:'eye'}
+            meta:{title:'分成设置', icon:'eye',role: ['admin','super_editor']}
           },
           {
             path:'withdrawManage',
             name:'withdrawManage',
             component: () => import('@/views/withdrawManage/index'),
-            meta: { title:'提现管理', icon:'eye'}
+            meta: { title:'提现管理', icon:'eye',role: ['admin','super_editor']}
           },
         ]
       },
@@ -216,27 +216,26 @@ export const asyncRouterMap = [
         path:'/detectingSystem',
         name:'detectingSystem',
         component: () => import('@/views/detectingSystem/index'),
-        meta: { title:'检测系统管理', icon:'eye'}
+        meta: { title:'检测系统管理', icon:'eye',role: ['admin','super_editor']}
       },
       {
         path:'/notePortManage',
         name:'notePortManage',
         component: () => import('@/views/notePortManage/index'),
-        meta: { title:'短信接口管理', icon:'eye'}
+        meta: { title:'短信接口管理', icon:'eye',role: ['admin','super_editor']}
       },
       {
         path:'/payPortManage',
         name:'payPortManage',
         component: () => import('@/views/notePortManage/index'),
-        meta: { title:'短信接口管理', icon:'eye'}
+        meta: { title:'支付接口管理', icon:'eye',role: ['admin','super_editor']}
       },
       {
         path:'/advertisingManage',
         name:'advertisingManage',
         component: () => import('@/views/advertisingManage/index'),
-        meta: { title:'广告窗口管理', icon:'eye'}
+        meta: { title:'广告窗口管理', icon:'eye',role: ['admin','super_editor']}
       },
     ]
   },
-  { path: '*', redirect: '/404', hidden: true }
 ];
