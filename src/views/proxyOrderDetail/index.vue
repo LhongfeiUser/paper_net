@@ -1,5 +1,5 @@
 <template>
-  <div class="app-container">
+  <div>
     <div class="orderDetail">
       <div class="orderDetail_title">
         <span class="el-icon-document"/>
@@ -25,7 +25,7 @@
       </div>
     </div>
     <el-table
-      :data="orderList"
+      :data="proxyOrderList"
       style="width:100%">
       <el-table-column label="订单详情">
         <el-table-column
@@ -73,12 +73,12 @@
 
 <script>
   import {getOrderList} from '@/api/table'
-    export default {
-      name: "OrderDetails",
-      data(){
-        return{
-          options: [
-            {
+  export default {
+    name: "OrderDetails",
+    data(){
+      return{
+        options: [
+          {
             value: '选项1',
             label: '检测系统1'
           }, {
@@ -94,30 +94,30 @@
             value: '选项5',
             label: '检测系统5'
           }],
-          value6: '',
-          date: '2016-05-06',value: '所有检测系统',
-          num: null,
-          orderList:null,
-          orderLists:null,
-        }
+        value6: '',
+        date: '2016-05-06',value: '所有检测系统',
+        num: null,
+        orderList:null,
+        orderLists:null,
+      }
+    },
+    created(){
+      this.getData();
+    },
+    methods:{
+      getData(){
+        getOrderList().then(res=>{
+          console.log(res);
+          this.orderLists=res.items;
+          this.changePage(1);
+          this.num = res.items.length;
+        })
       },
-      created(){
-        this.getData();
-      },
-      methods:{
-        getData(){
-          getOrderList().then(res=>{
-            console.log(res);
-            this.orderLists=res.items;
-            this.changePage(1);
-            this.num = res.items.length;
-          })
-        },
-        changePage(page){
-          this.orderList = this.orderLists.slice((page-1)*10,page*10)
-        }
+      changePage(page){
+        this.orderList = this.orderLists.slice((page-1)*10,page*10)
       }
     }
+  }
 </script>
 <style lang="scss">
   .el-select{
