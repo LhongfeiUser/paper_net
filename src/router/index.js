@@ -125,7 +125,6 @@ export const constantRouterMap = [
       },
     ]
   },
-  { path: '*', redirect: '/404', hidden: true },
 ];
 
 export default new Router({
@@ -154,7 +153,7 @@ export const asyncRouterMap = [
         meta:{title:'文章管理', icon:'article',role: ['admin','super_editor']}
       },
       {
-        path: 'orderManage',
+        path: '/orderManage',
         name: 'orderManage',
         component: () => import('@/views/orderManage/index'),
         meta: { title: '订单管理', icon: 'eye' },
@@ -181,8 +180,8 @@ export const asyncRouterMap = [
         ]
       },
       {
-        path: 'agentManage',
-        component: ()=>import('@/views/articleManage/index'),
+        path: '/agentManage',
+        component: ()=>import('@/views/agentManage/index'),
         name: 'articleManage',
         meta:{title:'代理商管理', icon:'article',role: ['admin','super_editor']},
         children:[
@@ -238,4 +237,5 @@ export const asyncRouterMap = [
       },
     ]
   },
+  { path: '*', redirect: '/404', hidden: true },
 ];

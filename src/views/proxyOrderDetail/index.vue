@@ -25,7 +25,7 @@
       </div>
     </div>
     <el-table
-      :data="proxyOrderList"
+      :data="orderList"
       style="width:100%">
       <el-table-column label="订单详情">
         <el-table-column
@@ -102,7 +102,7 @@
       }
     },
     created(){
-      this.getData();
+      // this.getData();
     },
     methods:{
       getData(){

@@ -1,129 +1,252 @@
 <template>
   <div class="app-container">
-    <div class="article_title">
-      文章列表
+    <div v-show="isCompile">
+      <div class="article_title">
+        <span class="el-icon-document"/>
+        文章列表
+      </div>
+      <el-table
+        :data="tableData"
+        border
+        style="width: 100%;">
+        <el-table-column
+          fixed
+          prop="id"
+          label="ID"
+          align="center"
+          width="100"/>
+        <el-table-column
+          prop="title"
+          label="标题"
+          align="center"
+          width=""/>
+        <el-table-column
+          prop="type"
+          label="类别"
+          align="center"
+          width=""/>
+        <el-table-column
+          prop="name"
+          label="作者"
+          align="center"
+          width=""/>
+        <el-table-column
+          prop="date"
+          label="发布时间"
+          align="center"
+          width=""/>
+        <el-table-column
+          fixed="right"
+          label="操作"
+          align="center"
+          width="200">
+          <template slot-scope="scope">
+            <el-button class="el-button--danger" size="small" @click="handleClick(scope.$index,tableData)"><i class="el-icon-delete" style="padding-right:5px;"></i>删除
+            </el-button>
+            <el-button class="el-button--primary" size="small" @click="compile(scope.row)"><i class=" el-icon-edit" style="padding-right:5px;"></i>编辑</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+      <el-pagination
+        :total="100"
+        :page-size="3"
+        background
+        layout="prev, pager, next"
+        @current-change="changePage"/>
     </div>
-    <el-table
-      v-if="isCompile"
-      :data="tableData"
-      border
-      style="width: 100%">
-      <el-table-column
-        fixed
-        prop="city"
-        label="ID"
-        width=""/>
-      <el-table-column
-        fixed
-        prop="date"
-        label="标题"
-        width=""/>
-      <el-table-column
-        prop="name"
-        label="类别"
-        width=""/>
-      <el-table-column
-        prop="province"
-        label="作者"
-        width=""/>
-      <el-table-column
-        prop="date"
-        sortable
-        label="发布时间"
-        width=""/>
-      <el-table-column
-        fixed="right"
-        label="操作"
-        width="150">
-        <template slot-scope="scope">
-          <el-button type="text" size="small" @click="handleClick(scope.$index,tableData)" >删除</el-button>
-          <el-button type="text" size="small" @click="compile(scope.row)">编辑</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-    <div v-if="!isCompile">
-      <el-form :label-position="labelPosition" :model="formLabelAlign" label-width="80px">
-        <el-form-item label="姓名">
-          <el-input v-model="formLabelAlign.name"/>
-        </el-form-item>
-        <el-form-item label="标题">
-          <el-input v-model="formLabelAlign.region"/>
-        </el-form-item>
-        <el-form-item label="类别">
-          <el-input v-model="formLabelAlign.type"/>
-        </el-form-item>
-      </el-form>
-      <el-button @click="success()">完成</el-button>
+    <div v-show="!isCompile" class="_compile">
+      <div class="title_compile">
+        <h4>您好 : <strong>lhf1667</strong></h4>
+        <div class="btn_compile">
+          <el-button class="el-button--danger" size="" @click="success()">取消</el-button>
+          <el-button class="el-button--primary" size="" @click="success()">保存</el-button>
+        </div>
+      </div>
+      <div class="content_compile">
+        <el-form :inline="true" :label-position="labelPosition" :model="formLabelAlign" label-width="80px" >
+          <el-form-item label="ID">
+            <el-input v-model="formLabelAlign.id"/>
+          </el-form-item>
+          <el-form-item label="标题">
+            <el-input v-model="formLabelAlign.title"/>
+          </el-form-item>
+          <el-form-item label="类别">
+            <el-input v-model="formLabelAlign.type"/>
+          </el-form-item>
+          <el-form-item label="作者">
+            <el-input v-model="formLabelAlign.name"/>
+          </el-form-item>
+          <el-form-item label="发布时间">
+            <el-input v-model="formLabelAlign.date"/>
+          </el-form-item>
+        </el-form>
+        <div id="editorElem"></div>
+      </div>
     </div>
   </div>
 </template>
-
 <script>
-    export default {
-       data(){
-         return{
-           labelPosition: 'right',
-           formLabelAlign: {
-             name: '',
-             region: '',
-             type: ''
-           },
-           meg:null,
-           isCompile:true,
-           tableData: [{
-             date: '2016-05-03',
-             name: '王小虎',
-             province: '上海',
-             city: '普陀区',
-             address: '上海市普陀区金沙江路 1518 弄',
-             zip: 200333
-           }, {
-             date: '2016-05-02',
-             name: '王小虎',
-             province: '上海',
-             city: '普陀区',
-             address: '上海市普陀区金沙江路 1518 弄',
-             zip: 200333
-           }, {
-             date: '2016-05-04',
-             name: '王小虎',
-             province: '上海',
-             city: '普陀区',
-             address: '上海市普陀区金沙江路 1518 弄',
-             zip: 200333
-           }, {
-             date: '2016-05-01',
-             name: '王小虎',
-             province: '上海',
-             city: '普陀区',
-             address: '上海市普陀区金沙江路 1518 弄',
-             zip: 200333
-           }]
-         }
-       },
-      methods: {
-        handleClick(index,row) {
-          row.splice(index,1)
+  import E from 'wangeditor'
+
+  export default {
+    data() {
+      return {
+        labelPosition: 'left',
+        formLabelAlign: {
+          name: '',
+          date: '',
+          type: '',
+          title:'',
+          id:''
         },
-        compile(row){
-          this.isCompile = !this.isCompile;
-          this.formLabelAlign=row;
-          console.log(this.meg);
-        },
-        success(){
-          this.isCompile = !this.isCompile;
-          console.log(this.meg);
-          this.meg='';
-        }
+        meg: null,
+        isCompile: true,
+        tableData: [
+          {
+            date: '2016-05-03',
+            name: '王小虎',
+            title: '喝茶与养生',
+            id: '3',
+            type: '知网',
+          },{
+            date: '2016-05-03',
+            name: '王小虎',
+            title: '喝茶与养生',
+            id: '3',
+            type: '知网',
+          },{
+            date: '2016-05-03',
+            name: '王小虎',
+            title: '喝茶与养生',
+            id: '3',
+            type: '知网',
+          },{
+            date: '2016-05-03',
+            name: '王小虎',
+            title: '喝茶与养生',
+            id: '3',
+            type: '知网',
+          },{
+            date: '2016-05-03',
+            name: '王小虎',
+            title: '喝茶与养生',
+            id: '3',
+            type: '知网',
+          },{
+            date: '2016-05-03',
+            name: '王小虎',
+            title: '喝茶与养生',
+            id: '3',
+            type: '知网',
+          },{
+            date: '2016-05-03',
+            name: '王小虎',
+            title: '喝茶与养生',
+            id: '3',
+            type: '知网',
+          },{
+            date: '2016-05-03',
+            name: '王小虎',
+            title: '喝茶与养生',
+            id: '3',
+            type: '知网',
+          },{
+            date: '2016-05-03',
+            name: '王小虎',
+            title: '喝茶与养生',
+            id: '3',
+            type: '知网',
+          }],
+        editorContent: '',
       }
-    }
+    },
+    mounted() {
+      let editor = new E('#editorElem')
+      editor.customConfig.onchange = (html) => {
+        this.editorContent = html
+      };
+      editor.create()
+    },
+    methods: {
+      //设置表头背景
+      /*getRowClass({ row, column, rowIndex, columnIndex }) {
+        if (rowIndex == 0) {
+          return 'background:#f5f5f5'
+        } else {
+          return ''
+        }
+      },*/
+      changePage(page){
+      },
+      handleClick(index, row) {
+        this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          row.splice(index, 1);
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });
+        });
+      },
+      compile(row) {
+        this.isCompile = !this.isCompile;
+        this.formLabelAlign = row;
+      },
+      success() {
+        this.isCompile = !this.isCompile;
+        console.log(this.meg);
+        this.meg = '';
+      }
+    },
+  }
 </script>
 
-<style scoped lang="scss">
-    .article_title{
-      width:100%;
-      padding:10px;
-      background-color:#f8f5f0;
-      color:#909399;
+<style rel="stylesheet/scss" scoped lang="scss">
+  .el-pagination {
+    text-align: end;
+    margin-top: 5vh;
+  }
+  .el-form--inline .el-form-item{
+    margin-right:80px;
+    margin-bottom:40px;
+  }
+  .app-container{
+    .article_title {
+      width: 100%;
+      padding: 20px 10px;
+      color: #909399;
+      background-color: #f5f7fa;
+      font-size:18px;
+      span{
+        font-size:20px;
+      }
     }
+    ._compile{
+      .title_compile{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background:rgba(66,185,131,.1);
+        padding:5px 50px;
+        h4{
+          color: #909399;
+          strong{
+          }
+        }
+      }
+      .content_compile{
+        background-color: #f5f7fa;
+        border-radius:5px;
+        padding:30px 50px;
+      }
+    }
+  }
 </style>
