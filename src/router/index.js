@@ -138,13 +138,13 @@ export const asyncRouterMap = [
     component: Layout,
     redirect: '/manageLists/table',
     name: 'manageLists',
-    meta: { title: '总管理列表', icon: 'table' },
+    meta: { title: '总管理列表', icon: 'userList' },
     children: [
       {
         path: 'vipManage',
         component: ()=>import('@/views/vipManage/index'),
         name: 'vipManage',
-        meta:{title:'会员管理', icon:'tree',role: ['admin','super_editor']}
+        meta:{title:'会员管理', icon:'user',role: ['admin','super_editor']}
       },
       {
         path: 'articleManage',
@@ -156,7 +156,7 @@ export const asyncRouterMap = [
         path: '/orderManage',
         name: 'orderManage',
         component: () => import('@/views/orderManage/index'),
-        meta: { title: '订单管理', icon: 'eye' },
+        meta: { title: '订单管理', icon: 'form' },
         children:[
           {
             path: 'proxyOrderDetail',
@@ -183,7 +183,7 @@ export const asyncRouterMap = [
         path: '/agentManage',
         component: ()=>import('@/views/agentManage/index'),
         name: 'articleManage',
-        meta:{title:'代理商管理', icon:'article',role: ['admin','super_editor']},
+        meta:{title:'代理商管理', icon:'proxyManage',role: ['admin','super_editor']},
         children:[
           {
             path:'proxyDataStatistics',
@@ -227,7 +227,7 @@ export const asyncRouterMap = [
         path:'/payPortManage',
         name:'payPortManage',
         component: () => import('@/views/notePortManage/index'),
-        meta: { title:'支付接口管理', icon:'eye',role: ['admin','super_editor']}
+        meta: { title:'支付接口管理', icon:'applyForWithdraw',role: ['admin','super_editor']}
       },
       {
         path:'/advertisingManage',

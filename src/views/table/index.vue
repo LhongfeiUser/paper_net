@@ -146,10 +146,10 @@ export default {
   }
   /*表格头部background*/
 
-  .el-table th, .el-table tr{
+ /* .el-table th, .el-table tr{
     background: #f5f7fa;
   }
   .el-table__header-wrapper .el-table th, .el-table tr {
     background-color:#fff;
-  }
+  }*/
 </style>

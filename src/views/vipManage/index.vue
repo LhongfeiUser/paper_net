@@ -48,6 +48,7 @@
       <el-table-column
         prop="date"
         label="时间"
+        sortable
         align="center"
         width="200"/>
       <el-table-column

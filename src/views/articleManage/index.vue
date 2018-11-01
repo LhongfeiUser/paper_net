@@ -33,6 +33,7 @@
         <el-table-column
           prop="date"
           label="发布时间"
+          sortable
           align="center"
           width=""/>
         <el-table-column

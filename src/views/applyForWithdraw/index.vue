@@ -30,7 +30,7 @@
         </el-form>
       </div>
       <div class="save_btn">
-        <button class="el-button">保存</button>
+        <el-button class="el-button--primary">保存</el-button>
       </div>
     </div>
   </div>
@@ -89,7 +89,7 @@
     display: flex;
     justify-content: flex-start;
     align-items:center;
-    background-color:#f8f5f0;
+    background-color:#f5f7fa;
     color:#606266;
     span{
       margin:auto 1vw;
