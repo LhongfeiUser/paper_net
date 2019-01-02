@@ -9,7 +9,7 @@ export function getList(params) {
 }
 export function getInCome(params) {
   return request({
-    url: '/statement',
+    url: '/proxyStatement',
     method: 'get',
     params
   })

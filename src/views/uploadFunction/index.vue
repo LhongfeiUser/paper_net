@@ -8,7 +8,7 @@
         :on-preview="handlePreview"
         :on-remove="handleRemove"
         :before-remove="beforeRemove"
-        :headers="{ContentType:'application/x-www-form-urlencoded'}"
+        :headers="{ContentType:'multipart/form-data;boundary'}"
         class="upload-demo"
         accept=".jpg,.doc,.png"
         action="https://jsonplaceholder.typicode.com/posts/"

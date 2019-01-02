@@ -77,13 +77,20 @@ export default {
     return {
       listItem: null,
       listNum:null,
-      today:[],
+      today:[
+        {
+          order:1,
+          article_num:10,
+          sale:2,
+          inCome:10,
+        }
+      ],
       listLoading: true,
       num: 0,
     }
   },
   created() {
-    this.fetchData()
+    // this.fetchData()
   },
   methods: {
     fetchData() {
@@ -102,7 +109,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped lang="scss">
   .el-pagination {
     text-align: end;
     margin-top: 5vh;
@@ -115,14 +122,14 @@ export default {
   .statistics_top{
     background:#f5f7fa;
     border-bottom:1px solid #ebeef5;
-    height:30px;
-    line-height:30px;
+    height:50px;
+    line-height:50px;
     padding-left:20px;
   }
   .statistics_item{
     display: flex;
-    justify-content: space-around;
-    align-items:center;
+    margin:0;
+    padding:10px 0;
   }
   .statistics_item li{
     display: flex;
@@ -130,7 +137,13 @@ export default {
     justify-content: space-around;
     align-items: center;
     border-right:1px solid #ebeef5;
-    width:20vw;
+    width:25%;
+    h4,h5{
+      margin:10px auto;
+    }
+    h5{
+      font-size:24px;
+    }
   }
   .statistics_item li:nth-last-child(1){
     border-right:none;

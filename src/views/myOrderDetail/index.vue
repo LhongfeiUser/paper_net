@@ -131,9 +131,6 @@
   .el-select {
     margin-right: 5px;
   }
-  .el-range-editor.el-input__inner{
-    width:280px;
-  }
   .el-input.el-input--suffix, .el-input{
     width:20vw;
   }
@@ -141,10 +138,6 @@
   .el-pagination {
     text-align: end;
     margin-top: 5vh;
-  }
-
-  .el-date-editor .el-range-separator {
-    width: 10%;
   }
 
   .orderDetail {

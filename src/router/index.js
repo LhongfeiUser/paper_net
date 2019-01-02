@@ -43,13 +43,13 @@ export const constantRouterMap = [
         path: 'table',
         name: 'Table',
         component: () => import('@/views/table/index'),
-        meta: { title: '数据统计', icon: 'table' }
+        meta: { title: '数据统计', icon: 'dataStatistics' }
       },
       {
         path: 'myOrder',
         component: ()=>import('@/views/myOrderDetail/index'),
         name: 'myOrder',
-        meta:{title:'订单详情', icon:'applyForWithdraw'}
+        meta:{title:'订单详情', icon:'order'}
       },
       {
         path: 'userList',
@@ -61,7 +61,7 @@ export const constantRouterMap = [
         path: 'myStatement',
         component: ()=>import('@/views/myStatement/index'),
         name: 'myStatement',
-        meta:{title:'我的分成', icon:'applyForWithdraw'}
+        meta:{title:'我的分成', icon:'prorataManage'}
       },
       {
         path: 'apply',
@@ -162,7 +162,7 @@ export const asyncRouterMap = [
             path: 'proxyOrderDetail',
             name: 'proxyOrderDetail',
             component: () => import('@/views/proxyOrderDetail/index'),
-            meta: { title: '订单详情', icon: 'table' }
+            meta: { title: '订单详情', icon: 'order' }
           },
 
           {
@@ -189,25 +189,25 @@ export const asyncRouterMap = [
             path:'proxyDataStatistics',
             name:'proxyDataStatistics',
             component: () => import('@/views/proxyDataStatistics/index'),
-            meta: { title:'数据统计', icon:'eye',role: ['admin','super_editor']}
+            meta: { title:'数据统计', icon:'dataStatistics',role: ['admin','super_editor']}
           },
           {
             path:'proxyStatement',
             name:'proxyStatement',
             component: () => import('@/views/proxyStatement/index'),
-            meta: { title:'收支明细', icon:'eye',role: ['admin','super_editor']}
+            meta: { title:'收支明细', icon:'statement',role: ['admin','super_editor']}
           },
           {
             path: 'sharedSetting',
             component: ()=>import('@/views/sharedSetting/index'),
             name: 'sharedSetting',
-            meta:{title:'分成设置', icon:'eye',role: ['admin','super_editor']}
+            meta:{title:'分成设置', icon:'divide',role: ['admin','super_editor']}
           },
           {
             path:'withdrawManage',
             name:'withdrawManage',
             component: () => import('@/views/withdrawManage/index'),
-            meta: { title:'提现管理', icon:'eye',role: ['admin','super_editor']}
+            meta: { title:'提现管理', icon:'withdraw',role: ['admin','super_editor']}
           },
         ]
       },
@@ -215,13 +215,13 @@ export const asyncRouterMap = [
         path:'/detectingSystem',
         name:'detectingSystem',
         component: () => import('@/views/detectingSystem/index'),
-        meta: { title:'检测系统管理', icon:'eye',role: ['admin','super_editor']}
+        meta: { title:'检测系统管理', icon:'detection',role: ['admin','super_editor']}
       },
       {
         path:'/notePortManage',
         name:'notePortManage',
         component: () => import('@/views/notePortManage/index'),
-        meta: { title:'短信接口管理', icon:'eye',role: ['admin','super_editor']}
+        meta: { title:'短信接口管理', icon:'note',role: ['admin','super_editor']}
       },
       {
         path:'/payPortManage',
@@ -233,7 +233,7 @@ export const asyncRouterMap = [
         path:'/advertisingManage',
         name:'advertisingManage',
         component: () => import('@/views/advertisingManage/index'),
-        meta: { title:'广告窗口管理', icon:'eye',role: ['admin','super_editor']}
+        meta: { title:'广告窗口管理', icon:'ad',role: ['admin','super_editor']}
       },
     ]
   },
